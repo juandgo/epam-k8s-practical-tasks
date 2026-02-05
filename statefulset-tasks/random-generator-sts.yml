@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: random-generator
+  labels:
+    app: random-generator
+spec:
+  serviceName: random-generator
+  replicas: 3
+  selector:
+    matchLabels:
+      app: random-generator
+  template:
+    metadata:
+      labels:
+        app: random-generator
+    spec:
+      containers:
+        - name: random-generator
+          image: sbeliakou/random-generator:2
+          volumeMounts:
+            - name: logs
+              mountPath: /logs
+  volumeClaimTemplates:
+    - metadata:
+        name: logs
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 10Mi
