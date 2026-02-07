@@ -1,3 +1,5 @@
+./checker -course 'kubernetes' -course-version 'services' -test-suite 'service'
+
 1. Create pod-info-svc service for pod-info-app deployment:
 
 kubectl get deploy pod-info-app -o yaml
@@ -49,4 +51,13 @@ nslookup myapp-headless
 
 4.
 
+kubectl apply -f hello-hello-service.yml 
+
 kubectl get deploy hello-hello -o yaml
+
+The "IP Ghost" Trick (Essential for WSL): Since you're on Minikube, the checker might be trying to hit the Minikube IP (192.168.49.2). Run this to make your WSL machine respond to that IP:
+
+Bash
+sudo ip addr add 192.168.49.2/32 dev lo
+
+<!-- KYrz7PfDy0MfaSY9RtFfUOrUP -->
