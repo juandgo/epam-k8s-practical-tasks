@@ -1,0 +1,47 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: red-svc
+spec:
+  type: ClusterIP
+  selector:
+    name: red-color
+  ports:
+    - port: 8080
+      targetPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: green-svc
+spec:
+  type: ClusterIP
+  selector:
+    name: green-color
+  ports:
+    - port: 8080
+      targetPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: yellow-svc
+spec:
+  type: ClusterIP
+  selector:
+    name: yellow-color
+  ports:
+    - port: 8080
+      targetPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: switch
+spec:
+  type: ClusterIP
+  selector:
+    app: color
+  ports:
+    - port: 80
+      targetPort: 80

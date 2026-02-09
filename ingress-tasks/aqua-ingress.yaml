@@ -3,6 +3,7 @@ kind: Ingress
 metadata:
   name: aqua-ingress
 spec:
+  ingressClassName: nginx # <--- ESTO ES VITAL
   rules:
   - host: aqua.k8slab.net
     http:

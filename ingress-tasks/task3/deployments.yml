@@ -1,0 +1,74 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: red-color
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: color
+      name: red-color
+  template:
+    metadata:
+      labels:
+        app: color
+        name: red-color
+    spec:
+      containers:
+        - name: red-color
+          image: sbeliakou/color:v1
+          ports:
+            - containerPort: 80
+          env:
+            - name: COLOR
+              value: red
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: green-color
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: color
+      name: green-color
+  template:
+    metadata:
+      labels:
+        app: color
+        name: green-color
+    spec:
+      containers:
+        - name: green-color
+          image: sbeliakou/color:v1
+          ports:
+            - containerPort: 80
+          env:
+            - name: COLOR
+              value: green
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: yellow-color
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: color
+      name: yellow-color
+  template:
+    metadata:
+      labels:
+        app: color
+        name: yellow-color
+    spec:
+      containers:
+        - name: yellow-color
+          image: sbeliakou/color:v1
+          ports:
+            - containerPort: 80
+          env:
+            - name: COLOR
+              value: yellow

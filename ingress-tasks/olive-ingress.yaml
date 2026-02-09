@@ -3,6 +3,7 @@ kind: Ingress
 metadata:
   name: olive-ingress
 spec:
+  ingressClassName: nginx # <--- ESTO ES VITAL
   rules:
   - host: olive.k8slab.net
     http:
