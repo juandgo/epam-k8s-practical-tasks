@@ -1,0 +1,38 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: maroon-svc
+  namespace: default
+spec:
+  selector:
+    color: maroon # Basado en tus 'kubectl get pods --show-labels'
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: aqua-svc
+  namespace: default
+spec:
+  selector:
+    color: aqua
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: olive-svc
+  namespace: default
+spec:
+  selector:
+    color: olive
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
