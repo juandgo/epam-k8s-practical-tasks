@@ -44,7 +44,8 @@ kubectl get ingress trouble-1-ingress -n default -o yaml > trouble1.yaml
 # 2. Borramos el original que causa el conflicto
 kubectl delete ingress trouble-1-ingress -n default
 
-# 3. Editamos el archivo para cambiar el namespace a trouble-1 y aplicamos
+# 3. Editamos el archivo para cambiar el namespace a trouble-1 y aplicamos, de sta forma se crea el trouble1.yaml con el ns trouble-1, para que funcione no deberia estar creado en el directorio, si lo esta solo hay que ejectarlo, pero para este task ya viene creado por defecto por cuando ejecutas el file ./deploy_ing .
+
 sed -i 's/namespace: default/namespace: trouble-1/' trouble1.yaml
 kubectl apply -f trouble1.yaml
 
