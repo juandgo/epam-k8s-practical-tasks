@@ -1,3 +1,6 @@
+# As far as now this works in Ubuntu vmware
+
+
 ./checker -course 'kubernetes' -course-version 'ingresses' -test-suite 'ingress'
 
 minikube addons enable ingress
@@ -102,3 +105,4 @@ kubectl patch svc navy-svc -n trouble-2 --type='json' -p='[{"op": "replace", "pa
 
 <!-- fLHjgfDpPJylQHiArYc1U01ZJ -->
 
+6.
