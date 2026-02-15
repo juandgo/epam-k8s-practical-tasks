@@ -89,7 +89,8 @@ kubectl edit ing trouble-2-ingress -n trouble-2
 
 
 # 1. Añadir la anotación de rewrite que falta
-kubectl annotate ingress trouble-2-ingress -n trouble-2 nginx.ingress.kubernetes.io/rewrite-target=/ --overwrite
+<!-- I think this isn't necesary -->
+<!-- kubectl annotate ingress trouble-2-ingress -n trouble-2 nginx.ingress.kubernetes.io/rewrite-target=/ --overwrite --> 
 
 # 2. Corregir los puertos en el Ingress para que apunten al 80 del Service, this other way to do it without edit the ingress manualy
 kubectl patch ingress trouble-2-ingress -n trouble-2 --type='json' -p='[
@@ -106,3 +107,31 @@ kubectl patch svc navy-svc -n trouble-2 --type='json' -p='[{"op": "replace", "pa
 <!-- fLHjgfDpPJylQHiArYc1U01ZJ -->
 
 6.
+# Comands to do troubleshooting
+
+kubectl get svc -n trouble-3
+
+kubectl describe svc fuchsia-svc -n trouble-3
+
+kubectl describe svc maroon-svc -n trouble-3
+
+kubectl get ing -n trouble-3
+
+kubectl describe ing trouble-3-ingress -n trouble-3
+
+kubectl get pods -n trouble-3 --show-labels
+
+kubectl get ep -n trouble-3
+
+# the solve is to change the label fuchsia  to fuchsia-color 
+kubectl edit  pod fuchsia-color-55d6747864-qq776 -n trouble-3
+
+
+kubectl create deployment maroon-color -n trouble-3 --image=sbeliakou/color:v1 --replicas=2
+kubectl set env deployment/maroon-color -n trouble-3 COLOR=maroon
+
+kubectl label deployment maroon-color -n trouble-3 app=maroon --overwrite
+# También fuerza la etiqueta en los pods (necesario para el selector del Service)
+kubectl patch deployment maroon-color -n trouble-3 -p '{"spec":{"template":{"metadata":{"labels":{"app":"maroon-color"}}}}}'
+
+kubectl scale deployment maroon-color -n trouble-3 --replicas=2
