@@ -135,3 +135,21 @@ kubectl label deployment maroon-color -n trouble-3 app=maroon --overwrite
 kubectl patch deployment maroon-color -n trouble-3 -p '{"spec":{"template":{"metadata":{"labels":{"app":"maroon-color"}}}}}'
 
 kubectl scale deployment maroon-color -n trouble-3 --replicas=2
+
+<!-- HxDP1xK5jQOoVika9tSfWId7r -->
+
+7. 
+
+kubectl apply -f ./task7
+
+# Configure the current Ingress Controller
+
+kubectl patch deployment ingress-nginx-controller -n ingress-nginx --type='json' -p='[
+  {
+    "op": "add", 
+    "path": "/spec/template/spec/containers/0/args/-", 
+    "value": "--default-backend-service=ingress-default-backend/sorry-page-service"
+  }
+]'
+
+<!-- d0dHsfcY5fg7gUS2GuoE9UNXy -->
