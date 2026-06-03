@@ -7,7 +7,7 @@ minikube addons enable ingress
 1. 
 
 # Add this line to /etc/hosts:
-127.0.0.1 trouble-1.k8slab.net trouble-2.k8slab.net trouble-3.k8slab.net aqua.k8slab.net maroon.k8slab.net olive.k8slab.net colors.k8slab.net
+127.0.0.1 trouble-1.k8slab.net trouble-2.k8slab.net trouble-3.k8slab.net aqua.k8slab.net maroon.k8slab.net olive.k8slab.net colors.k8slab.net lights.k8slab.net
 
 
 kubectl apply -f .

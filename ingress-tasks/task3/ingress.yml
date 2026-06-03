@@ -38,6 +38,7 @@ spec:
           # 2. La ruta raíz SIEMPRE al final
           - path: /
             pathType: Prefix
+            # pathType: Exact
             backend:
               service:
                 name: switch
